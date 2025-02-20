@@ -13,7 +13,6 @@ spring:
   cloud:
     nacos:
       server-addr: 192.168.145.130:8848
-
 mybatis-plus:
   configuration:
     default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
@@ -43,5 +42,7 @@ knife4j:
         api-rule: package
         api-rule-resources:
           - com.hmall.cart.controller
-
+feign:
+  okhttp:
+    enabled: true
 # keytool -genkeypair -alias hmall -keyalg RSA -keypass hmall123 -keystore hmall.jks -storepass hmall123
