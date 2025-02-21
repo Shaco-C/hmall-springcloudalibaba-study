@@ -27,4 +27,6 @@ spring:
           uri: lb://trade-service
           predicates:
             - Path=/orders/**
-
+      default-filters:
+        - AddRequestHeader=hi,hi
+        - PrintAny=1,2
