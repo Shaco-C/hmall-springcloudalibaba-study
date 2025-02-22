@@ -5,6 +5,7 @@ import com.hmall.cart.domain.dto.CartFormDTO;
 import com.hmall.cart.domain.po.Cart;
 import com.hmall.cart.domain.vo.CartVO;
 import com.hmall.cart.service.ICartService;
+import io.seata.spring.annotation.GlobalTransactional;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -24,6 +25,7 @@ public class CartController {
 
     @ApiOperation("添加商品到购物车")
     @PostMapping
+    @GlobalTransactional
     public void addItem2Cart(@Valid @RequestBody CartFormDTO cartFormDTO){
         cartService.addItem2Cart(cartFormDTO);
     }
