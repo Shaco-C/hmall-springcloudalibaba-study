@@ -42,6 +42,12 @@ server:
 #        api-rule: package
 #        api-rule-resources:
 #          - com.hmall.cart.controller
+spring:
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8090 #sentinel 控制台地址
+      http-method-specify: true #开启请求方式的前缀匹配，作为资源的名称，防止API重复
 feign:
   okhttp:
     enabled: true
