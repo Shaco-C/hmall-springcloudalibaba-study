@@ -1,5 +1,11 @@
 server:
   port: 8082
+  tomcat:
+    threads:
+      max: 50  #最多线程数
+    accept-count: 50  #最多等待线程数
+    max-connections: 100 #最大连接数
+
 #spring:
 #  application:
 #    name: cart-service
@@ -50,6 +56,8 @@ spring:
       http-method-specify: true #开启请求方式的前缀匹配，作为资源的名称，防止API重复
 feign:
   okhttp:
+    enabled: true
+  sentinel:
     enabled: true
 hm:
   db:
