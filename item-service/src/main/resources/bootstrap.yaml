@@ -1,7 +1,7 @@
 
 spring:
   application:
-    name: cart-service
+    name: item-service
   profiles:
     active: dev
   cloud:

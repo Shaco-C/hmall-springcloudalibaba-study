@@ -73,6 +73,13 @@
             <version>1.6.6</version>
             <scope>compile</scope>
         </dependency>
+
+        <!--        seata-->
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

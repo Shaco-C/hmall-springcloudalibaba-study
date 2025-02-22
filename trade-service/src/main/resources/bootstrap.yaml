@@ -1,7 +1,7 @@
 
 spring:
   application:
-    name: cart-service
+    name: trade-service
   profiles:
     active: dev
   cloud:
