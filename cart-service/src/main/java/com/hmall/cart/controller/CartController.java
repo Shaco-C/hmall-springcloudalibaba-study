@@ -27,7 +27,9 @@ public class CartController {
     @PostMapping
     @GlobalTransactional
     public void addItem2Cart(@Valid @RequestBody CartFormDTO cartFormDTO){
+
         cartService.addItem2Cart(cartFormDTO);
+
     }
 
     @ApiOperation("更新购物车数据")
