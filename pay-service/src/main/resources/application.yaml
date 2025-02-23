@@ -52,4 +52,11 @@ hm:
 feign:
   okhttp:
     enabled: true
+spring:
+  rabbitmq:
+    host: 192.168.145.130
+    port: 5672
+    virtual-host: /hmall
+    username: hmall
+    password: 123456
 # keytool -genkeypair -alias hmall -keyalg RSA -keypass hmall123 -keystore hmall.jks -storepass hmall123
