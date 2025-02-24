@@ -63,4 +63,10 @@ spring:
       simple:
         prefetch: 1  # 每次只拉取一条消息
         acknowledge-mode: auto  # 自动确认
+        retry: # 重试机制
+          enabled: true # 开启重试
+          initial-interval: 1000ms # 初始等待时间1s
+          multiplier: 1 # 每次重试间隔时间的倍数
+          max-attempts: 3 # 最大重试次数
+          stateless: true # 是否是无状态的，如果为false，则需要在业务代码里处理幂等性问题
 # keytool -genkeypair -alias hmall -keyalg RSA -keypass hmall123 -keystore hmall.jks -storepass hmall123
