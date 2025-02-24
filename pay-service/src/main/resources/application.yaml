@@ -59,4 +59,12 @@ spring:
     virtual-host: /hmall
     username: hmall
     password: 123456
+    connection-timeout: 1s
+    # 重试机制,是阻塞的，影响业务性能
+    template:
+      retry:
+        enabled: true
+        initial-interval: 1000ms # 初始重试间隔时间
+        multiplier: 1 # 重试间隔时间乘数
+        max-attempts: 3 # 最大重试次数
 # keytool -genkeypair -alias hmall -keyalg RSA -keypass hmall123 -keystore hmall.jks -storepass hmall123
