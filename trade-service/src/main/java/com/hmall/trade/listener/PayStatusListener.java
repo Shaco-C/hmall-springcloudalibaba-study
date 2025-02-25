@@ -30,7 +30,6 @@ public class PayStatusListener {
             //不做处理
             return;
         }
-
         //3.标记订单状态为已支付
         orderService.markOrderPaySuccess(orderId);
 
