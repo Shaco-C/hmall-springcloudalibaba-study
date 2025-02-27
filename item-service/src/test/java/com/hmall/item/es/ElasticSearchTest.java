@@ -18,6 +18,10 @@ import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.aggregations.AggregationBuilder;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.Aggregations;
+import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
@@ -29,6 +33,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 
@@ -114,6 +119,42 @@ public class ElasticSearchTest {
         SearchResponse response = client.search(request, RequestOptions.DEFAULT);
 
         parseResponsResult(response);
+    }
+    @Test
+    void testAgg() throws IOException {
+
+        //1.创建request对象
+        SearchRequest request = new SearchRequest("item");
+
+        //2.组织dsl参数
+        //2.1分页
+        request.source().size(0);
+
+        //2.2聚合条件
+        String brandAggName= "brandAgg";
+        request.source().aggregation(
+                AggregationBuilders.terms(brandAggName)
+                        .field("brand").size(10)
+        );
+
+        //3.发送请求
+        SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+
+        //4.解析结果
+        System.out.println(response);
+
+        Aggregations aggregations = response.getAggregations();
+
+        Terms brandTerms = aggregations.get(brandAggName);
+
+        List<? extends Terms.Bucket> buckets = brandTerms.getBuckets();
+
+        for (Terms.Bucket bucket : buckets) {
+            System.out.println("brand"+bucket.getKeyAsString());
+            System.out.println("doc_count"+bucket.getDocCount());
+
+        }
+
     }
 
     private static void parseResponsResult(SearchResponse response) {
